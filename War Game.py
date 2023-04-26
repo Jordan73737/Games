@@ -90,14 +90,14 @@ while game_on:
     print(f"Round {round_number}")
 
     if len(player_one.all_cards) == 0:
-        print('Player One is out of cards lmao, Player Two wins!')
+        print('Player One is out of cards, Player Two wins!')
         game_on = False
         break
         #^the braek line here is kinda pointless since game_on = False will break
         #out of the while loop anyway since it only loops if game_on = True
 
     if len(player_two.all_cards) == 0:
-        print('Player two is out of cards lmao, Player One wins!')
+        print('Player two is out of cards, Player One wins!')
         game_on = False
         break
         #^the braek line here is kinda pointless since game_on = False will break
