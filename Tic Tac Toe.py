@@ -2,6 +2,7 @@ from IPython.display import clear_output
 
 #step 1
 def display_board(board):
+    print('-----------')
     print('   |   |')
     print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('   |   |')
@@ -13,6 +14,7 @@ def display_board(board):
     print('   |   |')
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
     print('   |   |')
+    print('-----------')
 
 test_board = ['#',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 #display_board(test_board)
@@ -56,9 +58,9 @@ def choose_first():
     #'0' is regarded as lesser or false compared to '1'
     #so if player roles random 1 then he gets to be player '1'
     if random.randint(0, 1) == 0:
-        return 'Player 2'
+        return 'You are now Player 2'
     else:
-        return 'Player 1'
+        return 'You are now Player 1'
 
 #step 6
 def space_check(board, position):
@@ -77,16 +79,49 @@ def full_board_check(board):
 #step 8
 def player_choice(board):
     position = 0
-    while position not in [1,2,3,4,5,6,7,8,9,10] or not space_check(board, position):
-       position = int(input("Choose your next position: (1-9) "))
+    while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board, position):
+        positionStr = input(current_player + ", choose your next position: (1-9) ")
+        if positionStr.isnumeric():
+            position = int(positionStr)
     return position
 
 #step 9
-def replay():
-    return input("Would you like to play again? Say Yes or No?: ").lower().startswith('y')
+def replay_check():
+        valid_yes = {"yes", "ye", "y"}
+        valid_no = {"no", "n"}
 
-#step 10
+        while True:
+            answer = input("Do you want to play again, Yes or No?: ")
+
+            if answer.lower() in valid_yes:
+                return True
+                # I added blank lines for readability
+            elif answer.lower() in valid_no:
+                print("Thanks for playing!")
+                return False
+
+            else:
+                print("Please enter yes or no")
+
+#step 10 - Shows players the board position numbers before deciding on one themselves
+def display_board_positions():
+    print('   |   |')
+    print(' ' + '7' + ' | ' + '8' + ' | ' + '9')
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + '4' + ' | ' + '5' + ' | ' + '6')
+    print('   |   |')
+    print('-----------')
+    print('   |   |')
+    print(' ' + '1' + ' | ' + '2' + ' | ' + '3')
+    print('   |   |')
+
+
+#step 11 - Game Logic
 print('Welcome to Tic Tac Toe!')
+print('Here are the board position numbers')
+print(display_board_positions())
 
 still_playing = True
 while still_playing == True:
@@ -129,5 +164,5 @@ while still_playing == True:
                 display_board(board)
                 break
 
-    if not replay():
+    if not replay_check():
         still_playing = False
