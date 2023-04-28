@@ -146,7 +146,6 @@ while still_playing == True:
                     current_player = "Player 2"
             else:
                 print("Draw")
-                display_board(board)
                 break
         else:
             if full_board_check(board) == False:
@@ -161,7 +160,6 @@ while still_playing == True:
                     current_player = "Player 1"
             else:
                 print("Draw")
-                display_board(board)
                 break
 
     if not replay_check():
